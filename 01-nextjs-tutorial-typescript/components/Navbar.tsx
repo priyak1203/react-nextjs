@@ -1,0 +1,14 @@
+import Link from 'next/link';
+
+const Navbar = () => {
+  return (
+    <nav className="max-w-5xl mx-auto py-4 flex gap-x-4 border-b-2 pb-1 border-b-slate-500">
+      <Link href="/">Home</Link>
+      <Link href="/counter">Counter</Link>
+      <Link href="/tours">Tours</Link>
+      <Link href="/actions">Actions</Link>
+    </nav>
+  );
+};
+
+export default Navbar;
