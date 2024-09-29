@@ -1,21 +1,12 @@
-'use client';
+import Counter from '@/components/Counter';
 
-import { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
+function CounterPage() {
   return (
-    <div className="flex flex-col items-center w-[200px]">
-      <p className="text-5xl font-bold">{count}</p>
-      <button
-        className="bg-blue-500 rounded-md px-4 py-2 mt-4 text-white capitalize"
-        onClick={() => setCount(count + 1)}
-      >
-        increment
-      </button>
-    </div>
+    <section>
+      <h1 className="text-6xl mb-16">Counter Page Content</h1>
+      <Counter />
+    </section>
   );
 }
 
-export default Counter;
+export default CounterPage;
