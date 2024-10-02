@@ -1,4 +1,5 @@
 function page({ params }: { params: { id: string } }) {
+  console.log(params);
   return (
     <div>
       <h1 className="text-4xl">ID: {params.id}</h1>
