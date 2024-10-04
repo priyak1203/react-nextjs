@@ -37,7 +37,7 @@ async function ToursPage() {
                   alt={tour.name}
                   fill
                   priority
-                  sizes="33vw"
+                  sizes="(max-width:768px) 100vw,  (max-width:1200px) 50vw, 33vw"
                   className="object-cover rounded"
                 />
               </div>
