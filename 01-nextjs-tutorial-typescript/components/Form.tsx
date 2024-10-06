@@ -1,7 +1,4 @@
-const createUser = async () => {
-  'use server';
-  console.log('Creating user .....');
-};
+import { createUser } from '@/utils/actions';
 
 function Form() {
   return (
