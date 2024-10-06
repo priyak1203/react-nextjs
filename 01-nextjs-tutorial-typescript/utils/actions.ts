@@ -1,4 +1,6 @@
-export const createUser = async () => {
+export const createUser = async (formData: FormData) => {
   'use server';
-  console.log('Creating user action .....');
+  const firstName = formData.get('firstName') as string;
+  const lastName = formData.get('lastName') as string;
+  console.log({ firstName, lastName });
 };
