@@ -9,14 +9,14 @@ function Form() {
       <input
         type="text"
         name="firstName"
-        defaultValue="Susan"
+        defaultValue="Rohit"
         required
         className={inputStyle}
       />
       <input
         type="text"
         name="lastName"
-        defaultValue="Williams"
+        defaultValue="Mehra"
         required
         className={inputStyle}
       />

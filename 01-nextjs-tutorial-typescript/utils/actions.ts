@@ -1,6 +1,7 @@
 'use server';
 
 import { writeFile, readFile } from 'fs/promises';
+import { revalidatePath } from 'next/cache';
 
 type User = {
   id: string;
@@ -26,4 +27,5 @@ export const createUser = async (formData: FormData) => {
   const lastName = formData.get('lastName') as string;
   const newUser: User = { id: Date.now().toString(), firstName, lastName };
   await saveUser(newUser);
+  revalidatePath('/actions');
 };
