@@ -24,15 +24,16 @@ const saveUser = async (user: User) => {
 
 export const createUser = async (formData: FormData) => {
   ('use server');
+  // delay to see the form status working
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
   const newUser: User = { id: Date.now().toString(), firstName, lastName };
 
   try {
     await saveUser(newUser);
+    revalidatePath('/actions');
   } catch (error) {
     console.log(error);
   }
-  redirect('/');
-  // revalidatePath('/actions');
 };
