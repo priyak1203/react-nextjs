@@ -22,8 +22,9 @@ const saveUser = async (user: User) => {
   await writeFile('users.json', JSON.stringify(users));
 };
 
-export const createUser = async (formData: FormData) => {
+export const createUser = async (prevState: any, formData: FormData) => {
   ('use server');
+  console.log(prevState);
   // delay to see the form status working
   await new Promise((resolve) => setTimeout(resolve, 3000));
   const firstName = formData.get('firstName') as string;
@@ -33,7 +34,9 @@ export const createUser = async (formData: FormData) => {
   try {
     await saveUser(newUser);
     revalidatePath('/actions');
+    return 'User created successfully....';
   } catch (error) {
     console.log(error);
+    return 'Failed to create user...';
   }
 };
