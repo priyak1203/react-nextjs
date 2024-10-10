@@ -40,3 +40,11 @@ export const createUser = async (prevState: any, formData: FormData) => {
     return 'Failed to create user...';
   }
 };
+
+export const deleteUser = async (formData: FormData) => {
+  const id = formData.get('id') as string;
+  const users = await fetchUsers();
+  const updatedUsers = users.filter((user) => user.id !== id);
+  await writeFile('users.json', JSON.stringify(updatedUsers));
+  revalidatePath('/actions');
+};
