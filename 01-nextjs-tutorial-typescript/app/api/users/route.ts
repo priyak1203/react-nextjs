@@ -1,14 +1,10 @@
 import { fetchUsers } from '@/utils/actions';
+import { NextRequest } from 'next/server';
 
-export const GET = async (req: Request) => {
+export const GET = async (req: NextRequest) => {
+  console.log('===============');
   console.log(req.url);
-  console.log(new URL(req.url));
-
-  const { searchParams } = new URL(req.url);
-  console.log(searchParams);
-
-  const id = searchParams.get('id');
-  console.log(id);
+  console.log(req.nextUrl.searchParams.get('id'));
 
   const users = await fetchUsers();
   return Response.json({ users });
