@@ -9,10 +9,10 @@ async function FeaturedProducts() {
   if (products.length === 0) return <EmptyList />;
 
   return (
-    <div>
+    <section className="pt-24">
       <SectionTitle text="featured products" />
       <ProductsGrid />
-    </div>
+    </section>
   );
 }
 
