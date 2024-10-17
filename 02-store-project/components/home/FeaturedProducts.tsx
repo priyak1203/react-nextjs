@@ -1,5 +1,11 @@
+import SectionTitle from '../globals/SectionTitle';
+
 function FeaturedProducts() {
-  return <div>FeaturedProducts</div>;
+  return (
+    <div>
+      <SectionTitle text="featured products" />
+    </div>
+  );
 }
 
 export default FeaturedProducts;
