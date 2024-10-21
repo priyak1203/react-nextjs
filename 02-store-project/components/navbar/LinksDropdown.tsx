@@ -8,6 +8,7 @@ import {
 import { links } from '@/utils/links';
 import Link from 'next/link';
 import { LuAlignLeft } from 'react-icons/lu';
+import SignOutLink from './SignOutLink';
 
 function LinksDropdown() {
   return (
@@ -28,6 +29,7 @@ function LinksDropdown() {
           );
         })}
       </DropdownMenuContent>
+      <SignOutLink />
     </DropdownMenu>
   );
 }
