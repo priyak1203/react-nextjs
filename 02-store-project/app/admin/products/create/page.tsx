@@ -1,6 +1,5 @@
+import { SubmitButton } from '@/components/form/Buttons';
 import FormInput from '@/components/form/FormInput';
-import { Button } from '@/components/ui/button';
-
 import { faker } from '@faker-js/faker';
 
 const createProductAction = async (formData: FormData) => {
@@ -24,9 +23,7 @@ function CreateProductPage() {
             label="product name"
             defaultValue={name}
           />
-          <Button type="submit" size="lg">
-            Submit
-          </Button>
+          <SubmitButton text="create product" className="mt-8" />
         </form>
       </div>
     </section>
