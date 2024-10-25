@@ -77,7 +77,7 @@ export const createProductAction = async (
         image: '/images/product-3.jpg',
         description,
         featured,
-        clerkId: user?.id,
+        clerkId: user.id,
       },
     });
 
