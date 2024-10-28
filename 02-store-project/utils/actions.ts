@@ -12,7 +12,6 @@ const getAuthUser = async () => {
 };
 
 const renderError = (error: unknown): { message: string } => {
-  console.log(error);
   return {
     message: error instanceof Error ? error.message : 'An error occured',
   };
@@ -64,8 +63,12 @@ export const createProductAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
-    const validatedFields = productSchema.parse(rawData);
-    console.log(validatedFields);
+    const validatedFields = productSchema.safeParse(rawData);
+
+    if (!validatedFields.success) {
+      const errors = validatedFields.error.errors.map((error) => error.message);
+      throw new Error(errors.join(','));
+    }
 
     return { message: 'product created...' };
   } catch (error) {
