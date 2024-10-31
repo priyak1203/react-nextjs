@@ -1,3 +1,4 @@
+import { IconButton } from '@/components/form/Buttons';
 import EmptyList from '@/components/globals/EmptyList';
 import {
   Table,
@@ -21,7 +22,7 @@ async function ProductsPage() {
     <section>
       <Table>
         <TableCaption className="capitalize">
-          total products : {items.length}{' '}
+          total products : {items.length}
         </TableCaption>
         <TableHeader>
           <TableRow>
@@ -46,7 +47,10 @@ async function ProductsPage() {
                 </TableCell>
                 <TableCell>{company}</TableCell>
                 <TableCell>{formatCurrency(price)}</TableCell>
-                <TableCell></TableCell>
+                <TableCell className="flex items-center gap-x-2">
+                  <IconButton actionType="edit" />
+                  <IconButton actionType="delete" />
+                </TableCell>
               </TableRow>
             );
           })}
