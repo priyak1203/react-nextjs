@@ -162,3 +162,37 @@ export const updateProductAction = async (
     return renderError(error);
   }
 };
+
+export const updateProductImageAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  await getAdminUser();
+
+  try {
+    const productId = formData.get('id') as string;
+    const oldImgUrl = formData.get('url') as string;
+    const imgFile = formData.get('image') as File;
+
+    const validatedImgFile = validateWithZodSchema(imageSchema, {
+      image: imgFile,
+    });
+    const imgFullPath = await uploadImage(validatedImgFile.image);
+
+    // delete old image
+    await deleteImage(oldImgUrl);
+
+    // update new image url
+    await db.product.update({
+      where: { id: productId },
+      data: {
+        image: imgFullPath,
+      },
+    });
+
+    revalidatePath(`/admin/products/${productId}/edit`);
+    return { message: 'product image updated successfully' };
+  } catch (error) {
+    return renderError(error);
+  }
+};
