@@ -1,14 +1,26 @@
-import Comment from './Comment';
-import Rating from './Rating';
+import { fetchProductReviews } from '@/utils/actions';
+import SectionTitle from '../globals/SectionTitle';
+import ReviewCard from './ReviewCard';
 
-function ProductReviews() {
+async function ProductReviews({ productId }: { productId: string }) {
+  const reviews = await fetchProductReviews(productId);
+
   return (
-    <div>
-      <h2>product reviews</h2>
-      <Rating rating={3} />
-      <Comment
-        comment={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus delectus deleniti sit sapiente iusto consequuntur fuga facere eligendi alias eum nihil, autem dicta saepe nam voluptas repudiandae magni veniam nemo?`}
-      />
+    <div className="mt-16">
+      <SectionTitle text="product reviews" />
+      <div className="grid md:grid-cols-2 gap-8 my-8">
+        {reviews.map((review) => {
+          const { comment, rating, authorName, authorImageUrl } = review;
+          const reviewInfo = {
+            comment,
+            rating,
+            name: authorName,
+            image: authorImageUrl,
+          };
+
+          return <ReviewCard key={review.id} reviewInfo={reviewInfo} />;
+        })}
+      </div>
     </div>
   );
 }
