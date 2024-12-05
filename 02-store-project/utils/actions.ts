@@ -525,3 +525,7 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   }
   redirect('/cart');
 };
+
+export const createOrderAction = async (prevState: any, formData: FormData) => {
+  return { message: 'order created' };
+};
