@@ -365,6 +365,10 @@ export const findExistingReview = async (userId: string, productId: string) => {
   });
 };
 
+// ======================================================== //
+//                  Cart Action Functions                   //
+// ======================================================== //
+
 export const fetchCartItems = async () => {
   const { userId } = auth();
 
@@ -380,6 +384,68 @@ export const fetchCartItems = async () => {
   return cart?.numItemsInCart || 0;
 };
 
+const fetchProduct = async (productId: string) => {
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+
+  if (!product) {
+    throw new Error('Product not found');
+  }
+  return product;
+};
+
+const includeProductClause = {
+  cartItems: {
+    include: {
+      product: true,
+    },
+  },
+};
+
+export const fetchOrCreateCart = async ({
+  userId,
+  errorOnFailure = false,
+}: {
+  userId: string;
+  errorOnFailure?: boolean;
+}) => {
+  let cart = await db.cart.findFirst({
+    where: {
+      clerkId: userId,
+    },
+    include: includeProductClause,
+  });
+
+  if (!cart && errorOnFailure) {
+    throw new Error('Cart not found');
+  }
+
+  if (!cart) {
+    cart = await db.cart.create({
+      data: {
+        clerkId: userId,
+      },
+      include: includeProductClause,
+    });
+  }
+
+  return cart;
+};
+
 export const addToCartAction = async (prevState: any, formData: FormData) => {
-  return { message: 'Added to cart' };
+  const user = await getAuthUser();
+
+  try {
+    const productId = formData.get('productId') as string;
+    const amount = Number(formData.get('amount'));
+    await fetchProduct(productId);
+    const cart = await fetchOrCreateCart({ userId: user.id });
+    console.log('cart', cart);
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect('/cart');
 };
