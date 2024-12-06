@@ -21,9 +21,9 @@ async function CartPage() {
       <SectionTitle text="shopping cart" />
       <div className="mt-8 grid gap-4 lg:grid-cols-12">
         <div className="lg:col-span-8">
-          <CartItemsList />
+          <CartItemsList cartItems={cart.cartItems} />
         </div>
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-4 lg:pl-4">
           <CartTotals cart={cart} />
         </div>
       </div>
