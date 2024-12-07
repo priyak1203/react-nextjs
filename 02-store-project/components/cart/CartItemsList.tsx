@@ -1,3 +1,5 @@
+'use client';
+
 import { FirstColumn, FourthColumn, SecondColumn } from './CartItemColumns';
 import { Card } from '../ui/card';
 import ThirdColumn from './ThirdColumn';
