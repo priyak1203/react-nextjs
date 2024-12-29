@@ -31,6 +31,7 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
           <FormControl>
             <Input {...field} />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
