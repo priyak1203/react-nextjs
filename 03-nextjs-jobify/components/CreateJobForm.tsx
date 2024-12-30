@@ -12,8 +12,10 @@ import {
   JobStatus,
 } from '@/utils/types';
 import { createJobAction } from '@/utils/actions';
+import { useToast } from '@/hooks/use-toast';
 
 function CreateJobForm() {
+  const { toast } = useToast();
   // 1. Define your form
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
@@ -30,9 +32,18 @@ function CreateJobForm() {
   async function onSubmit(values: CreateAndEditJobType) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
-    const result = await createJobAction(values);
-    console.log(result);
+
+    const response = await createJobAction(values);
+    console.log(response);
+
+    if (!response) {
+      toast({
+        description: 'There was an error',
+      });
+      return;
+    }
+
+    toast({ description: 'Job created' });
   }
 
   return (
