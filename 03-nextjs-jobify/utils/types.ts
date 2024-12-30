@@ -27,3 +27,15 @@ export const createAndEditJobSchema = z.object({
 });
 
 export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>;
+
+export type JobType = {
+  id: string;
+  clerkId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  position: string;
+  company: string;
+  location: string;
+  status: string;
+  mode: string;
+};

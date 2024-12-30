@@ -11,6 +11,7 @@ import {
   JobMode,
   JobStatus,
 } from '@/utils/types';
+import { createJobAction } from '@/utils/actions';
 
 function CreateJobForm() {
   // 1. Define your form
@@ -26,10 +27,12 @@ function CreateJobForm() {
   });
 
   // 2. Define a submit handler
-  function onSubmit(values: CreateAndEditJobType) {
+  async function onSubmit(values: CreateAndEditJobType) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    const result = await createJobAction(values);
+    console.log(result);
   }
 
   return (
