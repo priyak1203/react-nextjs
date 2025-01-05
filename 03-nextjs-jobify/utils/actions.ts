@@ -90,3 +90,20 @@ export async function getAllJobs({
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
 }
+
+export async function deleteJobAction(id: string): Promise<JobType | null> {
+  const userId = await authenticateAndRedirect();
+
+  try {
+    const job: JobType = await prisma.job.delete({
+      where: {
+        id,
+        clerkId: userId,
+      },
+    });
+
+    return job;
+  } catch (error) {
+    return null;
+  }
+}

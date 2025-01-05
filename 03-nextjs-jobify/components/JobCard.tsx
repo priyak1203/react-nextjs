@@ -42,7 +42,7 @@ function JobCard({ job }: { job: JobType }) {
             edit
           </Link>
         </Button>
-        <DeleteJobBtn />
+        <DeleteJobBtn id={job.id} />
       </CardFooter>
     </Card>
   );
