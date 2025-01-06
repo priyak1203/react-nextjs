@@ -44,6 +44,7 @@ function CreateJobForm() {
       }
       toast({ description: 'Job created' });
       // Invalidate queries here
+      queryClient.invalidateQueries({ queryKey: ['jobs'] });
       router.push('/jobs');
     },
   });
@@ -52,18 +53,6 @@ function CreateJobForm() {
   async function onSubmit(values: CreateAndEditJobType) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-
-    // const response = await createJobAction(values);
-    // console.log(response);
-
-    // if (!response) {
-    //   toast({
-    //     description: 'There was an error',
-    //   });
-    //   return;
-    // }
-
-    // toast({ description: 'Job created' });
     mutate(values);
   }
 
