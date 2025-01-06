@@ -4,7 +4,7 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { createAndEditJobSchema, CreateAndEditJobType, JobType } from './types';
 import db from './db';
-import { Prisma } from '@prisma/client';
+import { Job, Prisma } from '@prisma/client';
 import prisma from './db';
 
 async function authenticateAndRedirect(): Promise<string> {
@@ -129,4 +129,25 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
   }
 
   return job;
+}
+
+export async function updateJobAction(
+  id: string,
+  values: CreateAndEditJobType
+): Promise<JobType | null> {
+  const userId = await authenticateAndRedirect();
+
+  try {
+    const job: JobType = await prisma.job.update({
+      where: {
+        id,
+        clerkId: userId,
+      },
+      data: { ...values },
+    });
+    return job;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
