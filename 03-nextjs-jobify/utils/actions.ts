@@ -4,11 +4,12 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { createAndEditJobSchema, CreateAndEditJobType, JobType } from './types';
 import db from './db';
-import { Job, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import prisma from './db';
 
 async function authenticateAndRedirect(): Promise<string> {
   const { userId } = await auth();
+
   if (!userId) {
     redirect('/');
   }
