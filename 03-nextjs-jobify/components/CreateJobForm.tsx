@@ -45,6 +45,8 @@ function CreateJobForm() {
       toast({ description: 'Job created' });
       // Invalidate queries here
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
+      queryClient.invalidateQueries({ queryKey: ['stats'] });
+      queryClient.invalidateQueries({ queryKey: ['charts'] });
       router.push('/jobs');
     },
   });

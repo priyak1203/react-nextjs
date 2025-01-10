@@ -39,6 +39,7 @@ function EditJobForm({ jobId }: { jobId: string }) {
       toast({ description: 'job updated' });
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
       queryClient.invalidateQueries({ queryKey: ['job', jobId] });
+      queryClient.invalidateQueries({ queryKey: ['stats'] });
       router.push('/jobs');
     },
   });

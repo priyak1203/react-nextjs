@@ -17,6 +17,8 @@ function DeleteJobBtn({ id }: { id: string }) {
       }
 
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
+      queryClient.invalidateQueries({ queryKey: ['stats'] });
+      queryClient.invalidateQueries({ queryKey: ['charts'] });
 
       toast({ description: 'job removed' });
     },
