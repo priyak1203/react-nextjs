@@ -1,5 +1,13 @@
+import { Skeleton } from '@/components/ui/skeleton';
+
 function Loading() {
-  return <h2 className="text-xl font-medium capitalize">Loading...</h2>;
+  return (
+    <div className="grid gap-4 p-8 rounded-lg border sm:grid-cols-2 md:grid-cols-3">
+      <Skeleton className="h-10" />
+      <Skeleton className="h-10" />
+      <Skeleton className="h-10" />
+    </div>
+  );
 }
 
 export default Loading;
